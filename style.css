@@ -7,6 +7,10 @@
   --teal: #1F6F78;
   --teal-deep: #144B52;
   --amber: #C97A2B;
+  --teal-tint: #E7EFEF;
+  --teal-tint-2: #DCE9E8;
+  --amber-tint: #F3EAE0;
+  --amber-tint-2: #EEE0CE;
   --line: #D9DEE0;
   --line-strong: #C3CBCE;
   --serif: "Source Serif 4", Georgia, serif;
@@ -21,7 +25,11 @@ html{ scroll-behavior: smooth; overflow-x: hidden; }
 
 body{
   margin: 0;
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse 900px 600px at 8% -8%, var(--teal-tint) 0%, transparent 60%),
+    radial-gradient(ellipse 800px 700px at 100% 12%, var(--amber-tint) 0%, transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16px;
@@ -67,7 +75,7 @@ a:focus-visible, button:focus-visible, label:focus-visible{
   flex-direction: column;
   justify-content: space-between;
   border-right: 1px solid var(--line);
-  background: var(--bg);
+  background: linear-gradient(180deg, var(--teal-tint) 0%, var(--bg) 45%);
   overflow-y: auto;
 }
 
@@ -240,8 +248,13 @@ main{
 /* ---------- Sub-page headers ---------- */
 .page-head{
   max-width: var(--content-max);
-  padding: 6rem 0 3rem;
+  margin: 5rem 0 3rem;
+  padding: 2.25rem 2rem;
+  border-left: 4px solid var(--teal);
+  border-radius: 2px;
 }
+.page-head.tint-amber{ border-left-color: var(--amber); background: var(--amber-tint); }
+.page-head.tint-teal{ border-left-color: var(--teal); background: var(--teal-tint); }
 .page-head .num{
   display: block;
   font-family: var(--mono);
@@ -249,6 +262,7 @@ main{
   color: var(--amber);
   margin-bottom: 0.9rem;
 }
+.page-head.tint-teal .num{ color: var(--teal-deep); }
 .page-head h1{
   font-size: clamp(2.1rem, 4vw, 2.75rem);
   font-weight: 600;
@@ -292,8 +306,12 @@ main{
 }
 .research-card{
   padding: 1.5rem;
-  background: var(--bg-alt);
+  background: var(--teal-tint);
   border-left: 3px solid var(--teal);
+}
+.research-card.amber{
+  background: var(--amber-tint);
+  border-left-color: var(--amber);
 }
 .research-card h3{ font-size: 1.15rem; margin-bottom: 0.6rem; }
 .research-card p{ font-size: 0.98rem; margin: 0; }
@@ -354,12 +372,12 @@ main{
   text-decoration: none;
   color: inherit;
   padding: 1.75rem;
-  background: var(--bg-alt);
+  background: var(--amber-tint);
   border-left: 3px solid var(--amber);
   margin-bottom: 1.25rem;
   transition: background 0.15s ease;
 }
-.paper-card:hover{ background: #E2E7E8; }
+.paper-card:hover{ background: var(--amber-tint-2); }
 .paper-card .paper-year{
   font-family: var(--mono);
   font-size: 0.78rem;
@@ -463,5 +481,5 @@ main{
   .photo-caption{ text-align: center; }
   .profile-links a{ flex-direction: column; gap: 0.15rem; }
   .pl-value{ text-align: left; }
-  .page-head{ padding-top: 4.5rem; }
+  .page-head{ margin-top: 4.5rem; padding: 1.75rem 1.5rem; }
 }
